@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Come back Brian</title>
+</head>
+<body>
+<h1>You can choose a flavor!!</h1>
+<form method="GET">
+<label for="chooseflavor">Choose a flavor, please!</label><br/>
+<select name="chooseflavor" id="chooseflavor">
+{% for flavor in flavors %}
+    <option value="{{ flavor[0] }}">{{ flavor[0].title() }}</option>
+{% endfor %}
+</select>
+<input type="submit" value="Show recipes!" />
+</form>
+</body>
+</html>
+
+

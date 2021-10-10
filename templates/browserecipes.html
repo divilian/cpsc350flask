@@ -1,0 +1,16 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<H2>Here are all our {{ faveFlave }} recipes!</H2>
+<table border=1>
+<tr><th>Recipe name</th><th># cartons on order</th></tr>
+{% for variablename in recipes %}
+    <tr><td><a href="{{url_for('showrecipe',recipe=variablename[0])}}">{{ variablename[0] }}</a></td><td>{{ variablename[1] }}</td></tr>
+{% endfor %}
+</table>
+</body>
+</html>
+
+
