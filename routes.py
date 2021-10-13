@@ -4,24 +4,35 @@ from flask import request
 from fallbreak import bj
 import sqlite3
 
-@bj.route("/")
-@bj.route("/haveagreatbreak")
-def saraid():
-    return "Have a <i><b>good</b></i> one too!"
 
 @bj.route("/showrecipe")
 def showrecipe():
-    recipename = request.args["recipe"]
     conn = sqlite3.connect("/home/stephen/teaching/350/bj.sqlite")
     cur = conn.cursor()
-    stephen = cur.execute(
+    if "numcartons" in request.args:
+        cur.execute(    
         """
-        select mixin_name from ingredients where recipe_name=?
-        """, (request.args["recipe"],)).fetchall()
-    return render_template("showrecipe.html",
-        recipe=request.args["recipe"], mixins=stephen)
-    
+        update recipe set cartonsOrdered=cartonsOrdered+?
+        where name=?
+        """, (int(request.args['numcartons']), request.args['recipe'])
+        )
+        conn.commit()
+        return ("Nathan was right! " +
+            f"You have now ordered {request.args['numcartons']} cartons of " +
+            f"{request.args['recipe']}")
+    else:
+        recipename = request.args["recipe"]
+        stephen = cur.execute(
+            """
+            select mixin_name, costPerOz from ingredients, mixin
+            where ingredients.mixin_name = mixin.name
+            and recipe_name=?
+            """, (request.args["recipe"],)).fetchall()
+        return render_template("showrecipe.html",
+            recipe=request.args["recipe"], mixins=stephen)
+ 
 
+@bj.route("/")
 @bj.route("/chooseflavor")
 def chooseflavor():
     conn = sqlite3.connect("/home/stephen/teaching/350/bj.sqlite")

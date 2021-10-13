@@ -4,10 +4,17 @@
 </head>
 <body>
 <h1>Information for recipe {{ recipe }}</h1>
-<ul>
-{% for jake in mixins: %}
-<li>{{ jake[0] }}</li>
+<table border=1>
+<tr><th>Name of mixin</th><th>Cost per oz</th></tr>
+{% for abe in mixins: %}
+<tr><td>{{ abe[0] }}</td><td>{{ abe[1] }}</li>
 {% endfor %}
-</ul>
+</table>
+<form method="get">
+<label for="numcartons">How many cartons do you wish?</label>
+<input type="text" name="numcartons" id="numcartons" value="1000" />
+<input type="submit" value="Order now!" />
+<input type="hidden" name="recipe" value="{{ recipe }}" />
+</form>
 </body>
 </html>
