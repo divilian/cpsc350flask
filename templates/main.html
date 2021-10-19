@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>
+    {% block robert %}
+    Welcome to Ben and Jerry's!
+    {% endblock %}
+    </title>
+</head>
+<body>
+<p style="color:red;">{{ msg }}</p>
+<h2>Welcome to Ben &amp; Jerry's!</h2>
+{% block garrick %}
+Ben and Jerry's have been delivering fantastic mouth=watering treats since 1912
+B.C.
+{% endblock %}
+<hr/>
+Your recent orders:
+<ul>
+{% for order in orders: %}
+<li>{{ order[1] }} cartons of {{ order[0] }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>

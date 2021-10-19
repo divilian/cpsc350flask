@@ -1,8 +1,5 @@
-<html>
-<head>
-    <title>Information for recipe {{ recipe }}</title>
-</head>
-<body>
+{% extends "main.html" %}
+{% block garrick %}
 <h1>Information for recipe {{ recipe }}</h1>
 <table border=1>
 <tr><th>Name of mixin</th><th>Cost per oz</th></tr>
@@ -16,5 +13,10 @@
 <input type="submit" value="Order now!" />
 <input type="hidden" name="recipe" value="{{ recipe }}" />
 </form>
-</body>
-</html>
+{% endblock %}
+
+{% block robert %}
+<title>
+Information for recipe {{ recipe }}
+</title>
+{% endblock %}

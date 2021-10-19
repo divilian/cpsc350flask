@@ -1,8 +1,5 @@
-<html>
-<head>
-    <title>This is after fall break...</title>
-</head>
-<body>
+{% extends "main.html" %}
+{% block garrick %}
 <h1>You can choose a flavor!!</h1>
 <form method="GET">
 <label for="chooseflavor">Choose a flavor, please!</label><br/>
@@ -13,7 +10,4 @@
 </select>
 <input type="submit" value="Show recipes!" />
 </form>
-</body>
-</html>
-
-
+{% endblock %}
