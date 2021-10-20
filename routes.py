@@ -1,7 +1,7 @@
 
 from flask import render_template
 from flask import request, redirect, url_for, session
-from fallbreak import bj
+from cpsc350flask import bj
 import sqlite3
 
 
