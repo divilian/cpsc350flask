@@ -1,13 +1,14 @@
 
 from flask import render_template
-from flask import request, redirect, url_for, session
+from flask import request, redirect, url_for, session, current_app
 from cpsc350flask import bj
+import os
 import sqlite3
 
 
 @bj.route("/showrecipe")
 def showrecipe():
-    conn = sqlite3.connect("/home/stephen/teaching/350/bj.sqlite")
+    conn = sqlite3.connect(os.path.join(current_app.root_path, "bj.sqlite"))
     cur = conn.cursor()
     if "numcartons" in request.args:
         cur.execute(    
@@ -48,7 +49,7 @@ def showrecipe():
  
 @bj.route("/browserecipes")
 def browserecipes():
-    conn = sqlite3.connect("/home/stephen/teaching/350/bj.sqlite")
+    conn = sqlite3.connect(os.path.join(current_app.root_path, "bj.sqlite"))
     cur = conn.cursor()
     brian = cur.execute(
         """
@@ -63,7 +64,7 @@ def browserecipes():
 @bj.route("/")
 @bj.route("/chooseflavor")
 def chooseflavor():
-    conn = sqlite3.connect("/home/stephen/teaching/350/bj.sqlite")
+    conn = sqlite3.connect(os.path.join(current_app.root_path, "bj.sqlite"))
     cur = conn.cursor()
     if "chooseflavor" in request.args:
         return redirect(url_for("browserecipes",
